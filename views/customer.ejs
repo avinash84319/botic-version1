@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>customer managment system</title>
+    </head>
+    <link rel="stylesheet"  href="css/styles.css">
+<body>
+    <div class="navbar">
+    <h1>CUSTOMER MANAGMENT SYSTEM</h1>
+    </div>
+
+    <div>
+        <h1 style="color:black;"><%=customer%></h1>
+    </div>
+
+    <div class="damm">
+        <h1 class="h1v2">Add product</h1>
+        <form action="/" method="post">
+            <input class="input" type="text" placeholder="product" name="addcustomer">
+            <input class="input" type="text" placeholder="stage" name="addphone">
+            <input class="input" type="text" placeholder="price" name="addphone">
+            <button class="button" type="submit">+</button>
+        </form>
+    </div>
+    
+    <div class="customers">
+        <h1 class="mainheading">Products</h1>
+        <form action="/customerpage" method="post">
+            <table>
+                <tr>
+                    <th>
+                        Name of product
+                    </th>
+                </tr>
+                <% for(i=0;i<customers.length;i++){%>
+                    <tr>
+                        <td><button class="button" type="button" name="customername" value=<%=customers[i] %>><%=customers[i] %></button></td>
+                    </tr>
+                    <%}%>
+            </table>
+        </form>
+    </div>
+    <div class="damm">   
+        <h1>Delete Customer</h1>
+        <form action="/" method="post">
+            <button type="submit" class="button" name="customername" value=<%=customer%>>Delete this customer</button>
+            </form>
+    </div>
+</body>
+</html>
