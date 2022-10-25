@@ -9,7 +9,7 @@
     </div>
 
     <div>
-        <h1 style="color:black;"><%=customer%></h1>
+        <h1 style="color:black;"><%=customer.name%></h1>
     </div>
 
     <div class="damm">
@@ -31,9 +31,9 @@
                         Name of product
                     </th>
                 </tr>
-                <% for(i=0;i<customers.length;i++){%>
+                <% for(i=0;i<customer.products.length;i++){%>
                     <tr>
-                        <td><button class="button" type="button" name="customername" value=<%=customers[i] %>><%=customers[i] %></button></td>
+                        <td><button class="button" type="button" name="customername" value=<%=customer %>><%=customer.products[i]%></button></td>
                     </tr>
                     <%}%>
             </table>
@@ -42,7 +42,7 @@
     <div class="damm">   
         <h1>Delete Customer</h1>
         <form action="/" method="post">
-            <button type="submit" class="button" name="customername" value=<%=customer%>>Delete this customer</button>
+            <button type="submit" class="button" name="customername" value=<%=customer %>>Delete this customer</button>
             </form>
     </div>
 </body>

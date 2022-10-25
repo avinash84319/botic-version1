@@ -27,11 +27,14 @@
                     <th>
                         Name of customer
                     </th>
+                    <th>
+                        Phoneno
+                    </th>
                 </tr>
                 <% for(i=0;i<customers.length;i++){%>
                     <tr>
-                        <td><button class="button" type="submit" name="customername" value=<%=customers[i] %>><%=
-                                    customers[i] %></button></td>
+                        <td><button class="button" type="button" name="customername" value=<%=customers[i].name %>><%=customers[i].name %></button></td>
+                        <td><button class="button" type="submit" name="customerphoneno" value=<%=customers[i].phoneno %>><%=customers[i].phoneno %></button></td>
                     </tr>
                     <%}%>
             </table>
