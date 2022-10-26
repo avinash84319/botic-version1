@@ -37,7 +37,6 @@ app.get("/customerpage", function(req,res){      //sendingg response on home rou
           console.log(err);
         }
         else{
-          console.log(customerpage[0]);
           res.render("customer", {customer:customerpage[0]});
         }
       });//sending array to ejs file
@@ -61,11 +60,20 @@ app.post("/customerpage",function(req,res){
 })
 
 app.post("/delete",function(req,res){
-    //delete function mongo db
-    res.redirect("/");
+    customer=req.body.customerphoneno;                              //store the phoneno of customer to be deleted
+    console.log(customer);
+    customers.deleteOne( {phoneno:{$eq:customer}},function(err){     //deleting function annd redirecting to home route
+      if(err){
+        console.log(err);
+      }
+      else{
+        res.redirect("/");
+      }
+    });
 })
 
 
 app.listen(3000,function(){
     console.log("server started successfully")
 });
+

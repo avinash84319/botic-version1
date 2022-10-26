@@ -41,8 +41,8 @@
     </div>
     <div class="damm">   
         <h1>Delete Customer</h1>
-        <form action="/" method="post">
-            <button type="submit" class="button" name="customername" value=<%=customer %>>Delete this customer</button>
+        <form action="/delete" method="post">
+            <button type="submit" class="button" name="customerphoneno" value=<%= customer.phoneno %>><%= customer.phoneno %></button>
             </form>
     </div>
 </body>
