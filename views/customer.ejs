@@ -23,6 +23,7 @@
             <input class="input" type="text" placeholder="product" name="addproduct">
             <input class="input" type="text" placeholder="stage" name="addstage">
             <input class="input" type="text" placeholder="total price" name="addprice">
+            <input class="input" type="text" placeholder="date" name="adddate">
             <button class="button" type="submit" name="phoneno" value="<%=customer.phoneno%>">+</button>
         </form>
     </div>
@@ -45,6 +46,9 @@
                         Total price
                     </th>
                     <th>
+                        Date
+                    </th>
+                    <th>
                         Delete
                     </th>
                 </tr>
@@ -54,6 +58,7 @@
                         <td><button class="button" type="button" name="customername" value=<%=customer %>><%=customer.products[i].name%></button></td>
                         <td><button class="button" type="button" name="customername" value=<%=customer %>><%=customer.products[i].work%></button></td>
                         <td><button class="button" type="button" name="customername" value=<%=customer %>><%=customer.products[i].price%></button></td>
+                        <td><button class="button" type="button" name="customername" value=<%=customer %>><%=customer.products[i].date%></button></td>
                         <td><button class="button" type="submit" name="deleteproduct" value=<%=customer.products[i].id%>>DELETE</button></td>
                     </tr>
                     <%}%>

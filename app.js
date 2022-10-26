@@ -88,7 +88,8 @@ app.post("/addproduct",function(req,res){  //adding product
     id:req.body.addproductid,
     name:req.body.addproduct,
     work:req.body.addstage,
-    price:parseInt(req.body.addprice)
+    price:parseInt(req.body.addprice),
+    date:req.body.adddate
   };
   customers.updateOne({phoneno:customer},{$push:  //pushing new object into prouct array
   {products:addproduct}},function(err){                           //error function always to coded to mongodb to work
