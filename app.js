@@ -38,20 +38,29 @@ app.get("/customerpage", function(req,res){      //sendingg response on home rou
           console.log(err);
         }
         else{
-          res.render("customer", {customer:customerpage[0]});
+          var price=0;
+          for(var i=0;i<customerpage[0].products.length;i++){             //calculating total price for a customer
+            price=price+customerpage[0].products[i].price;
+          }
+          res.render("customer", {customer:customerpage[0],price:price}); //sending price and selected customer object
         }
-      });//sending array to ejs file
+      });
 })
 
 
 app.post("/",function(req,res){
+  if(req.body.addcustomer){
     const addcustomer=new customers({          // apending new customer to old list
         name:req.body.addcustomer,
         phoneno:req.body.addphone,
         products:[]
     }) 
-    addcustomer.save();                                        
-    res.redirect("/"); //again sending ejs with new customer list
+    addcustomer.save();  
+    res.redirect("/");              //again sending ejs with new customer list
+  }
+  else{                                   
+    res.redirect("/");                //else for go back button in customer page
+  }
 })
 
 app.post("/customerpage",function(req,res){  //going to customer page
@@ -62,7 +71,6 @@ app.post("/customerpage",function(req,res){  //going to customer page
 
 app.post("/delete",function(req,res){    //delete customer
     customer=req.body.customerphoneno;                              //store the phoneno of customer to be deleted
-    console.log(customer);
     customers.deleteOne( {phoneno:{$eq:customer}},function(err){     //deleting function annd redirecting to home route
       if(err){
         console.log(err);
@@ -77,9 +85,10 @@ app.post("/addproduct",function(req,res){  //adding product
   customer=req.body.phoneno;
   console.log(req.body.phoneno);   //recognising which customer to add product
    var addproduct={                          //object product adding to products array
+    id:req.body.addproductid,
     name:req.body.addproduct,
     work:req.body.addstage,
-    price:req.body.addprice
+    price:parseInt(req.body.addprice)
   };
   customers.updateOne({phoneno:customer},{$push:  //pushing new object into prouct array
   {products:addproduct}},function(err){                           //error function always to coded to mongodb to work
@@ -95,8 +104,8 @@ app.post("/addproduct",function(req,res){  //adding product
 
 app.post("/deleteproduct",function(req,res){   //deleting product with checkbox
     product=req.body.deleteproduct;
-    customers.updateOne({phoneno:customer},{$pull:{products:{name:product}}},function(err){  //mathing for customer from previous customer vaiable
-      if(err){                                               //matching name with name of product
+    customers.updateOne({phoneno:customer},{$pull:{products:{id:product}}},function(err){  //mathing for customer from previous customer vaiable
+      if(err){                                               //matching id with id of product
         console.log(err);                                         //pull deletes the object from array product
       }
       else{

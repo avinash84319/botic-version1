@@ -10,6 +10,12 @@ h1 {
     color: white;
     padding-right: 50px;
 }
+.h1v3{
+    font-family: 'montserrat',Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    color: black;
+    padding-right: 50px;
+}
 .mainheading{
     font-family: 'montserrat',Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;

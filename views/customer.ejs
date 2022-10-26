@@ -10,11 +10,16 @@
 
     <div>
         <h1 style="color:black;"><%=customer.name%></h1>
+        <form method="post" action="/">
+            <button type="submit" class="button">GO BACK</button>
+        </form>
+        <h1 class="h1v3">Total due amount:- <%=price%> </h1>
     </div>
 
     <div class="damm">
         <h1 class="h1v2">Add product</h1>
         <form action="/addproduct" method="post">
+            <input class="input" type="text" placeholder="id" name="addproductid">
             <input class="input" type="text" placeholder="product" name="addproduct">
             <input class="input" type="text" placeholder="stage" name="addstage">
             <input class="input" type="text" placeholder="total price" name="addprice">
@@ -27,6 +32,9 @@
         <form action="/deleteproduct" method="post">
             <table>
                 <tr>
+                    <th>
+                        Id
+                    </th>
                     <th>
                         Name of product
                     </th>
@@ -42,10 +50,11 @@
                 </tr>
                 <% for(i=0;i<customer.products.length;i++){%>
                     <tr>
+                        <td><button class="button" type="button" name="customername" value=<%=customer %>><%=customer.products[i].id%></button></td>
                         <td><button class="button" type="button" name="customername" value=<%=customer %>><%=customer.products[i].name%></button></td>
                         <td><button class="button" type="button" name="customername" value=<%=customer %>><%=customer.products[i].work%></button></td>
                         <td><button class="button" type="button" name="customername" value=<%=customer %>><%=customer.products[i].price%></button></td>
-                        <td><button class="button" type="submit" name="deleteproduct" value=<%=customer.products[i].name%>>DELETE</button></td>
+                        <td><button class="button" type="submit" name="deleteproduct" value=<%=customer.products[i].id%>>DELETE</button></td>
                     </tr>
                     <%}%>
             </table>
