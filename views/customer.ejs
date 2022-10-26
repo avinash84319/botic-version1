@@ -14,26 +14,38 @@
 
     <div class="damm">
         <h1 class="h1v2">Add product</h1>
-        <form action="/" method="post">
-            <input class="input" type="text" placeholder="product" name="addcustomer">
-            <input class="input" type="text" placeholder="stage" name="addphone">
-            <input class="input" type="text" placeholder="price" name="addphone">
-            <button class="button" type="submit">+</button>
+        <form action="/addproduct" method="post">
+            <input class="input" type="text" placeholder="product" name="addproduct">
+            <input class="input" type="text" placeholder="stage" name="addstage">
+            <input class="input" type="text" placeholder="total price" name="addprice">
+            <button class="button" type="submit" name="phoneno" value="<%=customer.phoneno%>">+</button>
         </form>
     </div>
     
     <div class="customers">
         <h1 class="mainheading">Products</h1>
-        <form action="/customerpage" method="post">
+        <form action="/deleteproduct" method="post">
             <table>
                 <tr>
                     <th>
                         Name of product
                     </th>
+                    <th>
+                        Stage
+                    </th>
+                    <th>
+                        Total price
+                    </th>
+                    <th>
+                        Delete
+                    </th>
                 </tr>
                 <% for(i=0;i<customer.products.length;i++){%>
                     <tr>
-                        <td><button class="button" type="button" name="customername" value=<%=customer %>><%=customer.products[i]%></button></td>
+                        <td><button class="button" type="button" name="customername" value=<%=customer %>><%=customer.products[i].name%></button></td>
+                        <td><button class="button" type="button" name="customername" value=<%=customer %>><%=customer.products[i].work%></button></td>
+                        <td><button class="button" type="button" name="customername" value=<%=customer %>><%=customer.products[i].price%></button></td>
+                        <td><button class="button" type="submit" name="deleteproduct" value=<%=customer.products[i].name%>>DELETE</button></td>
                     </tr>
                     <%}%>
             </table>
