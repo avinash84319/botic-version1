@@ -30,13 +30,23 @@
                     <th>
                         Phoneno
                     </th>
+                    <th>
+                        Cost
+                    </th>
                 </tr>
                 <% for(i=0;i<customers.length;i++){%>
                     <tr>
                         <td><button class="button" type="button" name="customername" value=<%=customers[i].name %>><%=customers[i].name %></button></td>
                         <td><button class="button" type="submit" name="customerphoneno" value=<%=customers[i].phoneno %>><%=customers[i].phoneno %></button></td>
+                        <td>
+                            <% price=0; %>
+                            <% for(j=0;j<customers[i].products.length;j++){ %>
+                                <% price=price+parseInt(customers[i].products[j].price) %>
+                            <% } %>
+                            <button class="button" type="button" name="customerprice" value=<%=customers[i].name %>><%= price %></button>
+                        </td>
                     </tr>
-                    <%}%>
+                <%}%>
             </table>
         </form>
     </div>
