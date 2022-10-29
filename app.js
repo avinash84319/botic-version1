@@ -12,6 +12,7 @@ mongoose.connect("mongodb://localhost:27017/boticdb",{useNewUrlParser:true});
 var customer;
 var product;
 var undoproduct;
+var undocustomer;
 var dumb;
 var f;
 var deleteprodcust;
@@ -74,7 +75,20 @@ app.post("/customerpage",function(req,res){  //going to customer page
 })
 
 app.post("/delete",function(req,res){    //delete customer
-    customer=req.body.customerphoneno;                              //store the phoneno of customer to be deleted
+
+  customer=req.body.customerphoneno;                              //store the phoneno of customer to be deleted
+
+  customers.find({phoneno:customer},function(err,dash){
+    if(err){
+      console.log(err);
+    }
+    else{
+      console.log(dash);
+      undocustomer=dash[0];
+      console.log(undocustomer);
+    }
+  })
+  
     customers.deleteOne( {phoneno:{$eq:customer}},function(err){     //deleting function annd redirecting to home route
       if(err){
         console.log(err);
@@ -167,6 +181,26 @@ app.post("/undoproductdelete", function (req, res) {            //creatinf undo 
 }
 );
 
+app.post("/undocustomerdelete",function(req,res){
+  console.log(undocustomer);
+
+  customers.find({phoneno:undocustomer.phoneno},function(err,f){
+    if(f.length){ 
+     res.redirect("/");
+   }
+   else{
+    const addcustomer=new customers({          // apending new customer to old list
+      name:undocustomer.name,
+      phoneno:undocustomer.phoneno,
+      products:undocustomer.products
+  })
+  addcustomer.save(); 
+   res.redirect("/")
+   }
+
+  })
+ })
+  
 
 app.listen(3000,function(){
     console.log("server started successfully")
