@@ -14,6 +14,7 @@ var product;
 var undoproduct;
 var dumb;
 var f;
+var deleteprodcust;
 
 const scheme=mongoose.Schema({     //schema for customers object in customer collection
     name:String,
@@ -107,6 +108,7 @@ app.post("/addproduct",function(req,res){  //adding product
 })
 
 app.post("/deleteproduct",function(req,res){   //deleting product with checkbox
+  deleteprodcust=customer;                                   //savind product deleted customer no for undo delete
   product=req.body.deleteproduct;
     customers.find({phoneno:customer},function(err,dash){
       if(err){
@@ -129,37 +131,40 @@ app.post("/deleteproduct",function(req,res){   //deleting product with checkbox
     })
 });
 
-app.post("/undoproductdelete",function(req,res){
+app.post("/undoproductdelete", function (req, res) {            //creatinf undo for product delete
 
-if(req.body.undobutton=customer){
+  if (req.body.undobutton = deleteprodcust) {                      //checking in which customer product was deleted
 
- customers.find({phoneno:customer},function(err,f){
-    if(err){
-      console.log(err);
-    }
-  else{
-    if(f[0].products.filter(function(d){return d.id=undoproduct[0].id;}).length){ //checking for mutiple undo program by comparing with datbase
-      res.redirect("/customerpage");
-    }
-    else{
-    customers.updateOne({phoneno:customer},{$push:  //pushing new object into prouct array
-    {products:undoproduct[0]}},function(err){                           //error function always to coded to mongodb to work
-      if(err){
+    customers.find({ phoneno: customer }, function (err, f) {           //getting the customer object
+      if (err) {
         console.log(err);
       }
-      else{
-        res.redirect("/customerpage");
+      else {
+        if (f[0].products.filter(function (d) { return d.id = undoproduct[0].id; }).length) { //checking for mutiple undo program by comparing with datbase
+          res.redirect("/customerpage");
+        }
+        else {
+          customers.updateOne({ phoneno: customer }, {
+            $push:  //pushing new object into prouct array if not multiple undo
+              { products: undoproduct[0] }
+          }, function (err) {                           //error function always to coded to mongodb to work
+            if (err) {
+              console.log(err);
+            }
+            else {
+              res.redirect("/customerpage");
+            }
+          });
+        }
       }
     });
   }
-  }});
-     }
 
-else{
-  res.redirect("/customerpage");
+  else {
+    res.redirect("/customerpage");                        // if in different customer undo is used just redirect no undo 
+  }
+
 }
-
-    }
 );
 
 
