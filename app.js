@@ -11,6 +11,9 @@ mongoose.connect("mongodb://localhost:27017/boticdb",{useNewUrlParser:true});
 
 var customer;
 var product;
+var undoproduct;
+var dumb;
+var f;
 
 const scheme=mongoose.Schema({     //schema for customers object in customer collection
     name:String,
@@ -104,7 +107,18 @@ app.post("/addproduct",function(req,res){  //adding product
 })
 
 app.post("/deleteproduct",function(req,res){   //deleting product with checkbox
-    product=req.body.deleteproduct;
+  product=req.body.deleteproduct;
+    customers.find({phoneno:customer},function(err,dash){
+      if(err){
+        console.log(err);
+      }
+      else{
+        console.log(dash);
+        undoproduct=dash[0].products.filter(function(d){
+            return d.id=product;
+          })
+      }
+    })
     customers.updateOne({phoneno:customer},{$pull:{products:{id:product}}},function(err){  //mathing for customer from previous customer vaiable
       if(err){                                               //matching id with id of product
         console.log(err);                                         //pull deletes the object from array product
@@ -113,7 +127,40 @@ app.post("/deleteproduct",function(req,res){   //deleting product with checkbox
         res.redirect("/customerpage")
       }
     })
-})
+});
+
+app.post("/undoproductdelete",function(req,res){
+
+if(req.body.undobutton=customer){
+
+ customers.find({phoneno:customer},function(err,f){
+    if(err){
+      console.log(err);
+    }
+  else{
+    if(f[0].products.filter(function(d){return d.id=undoproduct[0].id;}).length){ //checking for mutiple undo program by comparing with datbase
+      res.redirect("/customerpage");
+    }
+    else{
+    customers.updateOne({phoneno:customer},{$push:  //pushing new object into prouct array
+    {products:undoproduct[0]}},function(err){                           //error function always to coded to mongodb to work
+      if(err){
+        console.log(err);
+      }
+      else{
+        res.redirect("/customerpage");
+      }
+    });
+  }
+  }});
+     }
+
+else{
+  res.redirect("/customerpage");
+}
+
+    }
+);
 
 
 app.listen(3000,function(){

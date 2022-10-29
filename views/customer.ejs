@@ -13,6 +13,9 @@
         <form method="post" action="/">
             <button type="submit" class="button">GO BACK</button>
         </form>
+        <form method="post" action="/undoproductdelete">
+            <button type="submit" class="button" name ="undobutton" value=<%=customer.phoneno %>>Undo</button>
+        </form>
         <h1 class="h1v3">Total due amount:- <%=price%> </h1>
     </div>
 
