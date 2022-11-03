@@ -4,6 +4,7 @@
     <title>customer managment system</title>
 </head>
 <link rel="stylesheet" href="css/styles.css">
+<link rel="icon" type="image/x-icon" href="images/favicon.ico">
 
 <body>
     <div class="navbar">
@@ -23,29 +24,28 @@
     </div>
 
     <div class="damm1">
-        <h1 class="h1v2">Search Customer</h1>
+        <h1 class="h1v3">Search Customer</h1>
         <form action="/searchcustomer" method="post">
-            <input class="input" type="text" placeholder="Phone No" name="addphone">  
+            <input class="input" type="text" placeholder="  Phone No" name="addphone">  
             <button class="button" type="submit">🔍</button>
         </form>
     </div>
 
     <div class="customers">
-        <h1 class="mainheading">Customers</h1>
         <form action="/customerpage" method="post">
             <table>
                 <tr>
                     <th>
-                        Name of customer
+                        <h2>Name of customer</h2>
                     </th>
                     <th>
-                        Phoneno
+                        <h2>Phoneno</h2>
                     </th>
                     <th>
-                        Cost
+                        <h2>Cost</h2>
                     </th>
                     <th>
-                        Products :-Date
+                        <h2>Products :-Date</h2>
                     </th>
                 <% for(i=0;i<customers.length;i++){%>
                     <tr>

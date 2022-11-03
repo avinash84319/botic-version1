@@ -3,6 +3,7 @@
         <title>customer managment system</title>
     </head>
     <link rel="stylesheet"  href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 <body>
     <div class="navbar">
     <h1>CUSTOMER MANAGMENT SYSTEM</h1>
@@ -10,29 +11,28 @@
 
     <div>
         <h1 style="color:black;"><%=customer.name%></h1>
-        <h1 class="h1v3">Total due amount:- <%=price%> </h1>
+        <h1 class="h1v4">Total due amount:- <%=price%> </h1>
     </div>
 
-    <div class="damm">
+    <div class="dammv2">
         <form method="post" action="/">
             <button type="submit" class="button">GO BACK</button>
         </form>
         <form method="post" action="/undoproductdelete">
             <button type="submit" class="button" name ="undobutton" value=<%=customer.phoneno %>>Undo</button>
         </form>
-        <h1 class="h1v2">Add product</h1>
+        <h1 class="h1v5">Add product</h1>
         <form action="/addproduct" method="post">
-            <input class="input" type="text" placeholder="id" name="addproductid">
-            <input class="input" type="text" placeholder="product" name="addproduct">
-            <input class="input" type="text" placeholder="stage" name="addstage">
-            <input class="input" type="text" placeholder="total price" name="addprice">
-            <input class="input" type="text" placeholder="date" name="adddate">
+            <input class="input" type="text" placeholder="  id" name="addproductid">
+            <input class="input" type="text" placeholder="  product" name="addproduct">
+            <input class="input" type="text" placeholder="  stage" name="addstage">
+            <input class="input" type="text" placeholder="  total price" name="addprice">
+            <input class="input" type="text" placeholder="  date" name="adddate">
             <button class="button" type="submit" name="phoneno" value="<%=customer.phoneno%>">➕</button>
         </form>
     </div>
     
     <div class="customers">
-        <h1 class="mainheading">Products</h1>
         <form action="/deleteproduct" method="post">
             <table>
                 <tr>
@@ -69,7 +69,7 @@
         </form>
     </div>
     <div class="damm">   
-        <h1>Delete Customer</h1>
+        <h1 class="h1v2">Delete Customer</h1>
         <form action="/delete" method="post">
             <button type="submit" class="button" name="customerphoneno" value=<%= customer.phoneno %>><%= customer.phoneno %></button>
             </form>
