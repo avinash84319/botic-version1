@@ -10,16 +10,16 @@
 
     <div>
         <h1 style="color:black;"><%=customer.name%></h1>
+        <h1 class="h1v3">Total due amount:- <%=price%> </h1>
+    </div>
+
+    <div class="damm">
         <form method="post" action="/">
             <button type="submit" class="button">GO BACK</button>
         </form>
         <form method="post" action="/undoproductdelete">
             <button type="submit" class="button" name ="undobutton" value=<%=customer.phoneno %>>Undo</button>
         </form>
-        <h1 class="h1v3">Total due amount:- <%=price%> </h1>
-    </div>
-
-    <div class="damm">
         <h1 class="h1v2">Add product</h1>
         <form action="/addproduct" method="post">
             <input class="input" type="text" placeholder="id" name="addproductid">
@@ -27,7 +27,7 @@
             <input class="input" type="text" placeholder="stage" name="addstage">
             <input class="input" type="text" placeholder="total price" name="addprice">
             <input class="input" type="text" placeholder="date" name="adddate">
-            <button class="button" type="submit" name="phoneno" value="<%=customer.phoneno%>">+</button>
+            <button class="button" type="submit" name="phoneno" value="<%=customer.phoneno%>">➕</button>
         </form>
     </div>
     

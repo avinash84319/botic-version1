@@ -183,7 +183,7 @@ app.post("/undoproductdelete", function (req, res) {            //creatinf undo 
 
 app.post("/undocustomerdelete",function(req,res){
   console.log(undocustomer);
-
+if(undocustomer){
   customers.find({phoneno:undocustomer.phoneno},function(err,f){
     if(f.length){ 
      res.redirect("/");
@@ -199,10 +199,27 @@ app.post("/undocustomerdelete",function(req,res){
    }
 
   })
+ }
+ else{
+  res.redirect("/");
+ }
+})
+
+ app.post("/searchcustomer",function(req,res){
+  customer=req.body.addphone;
+  customers.find({phoneno:customer},function(err,f){
+    if(f.length){ 
+     res.redirect("/customerpage");
+   }
+   else{
+     res.redirect("/");
+   }
+  
  })
+})
   
 
 app.listen(3000,function(){
-    console.log("server started successfully")
-});
+    console.log("server started successfully");
+})
 

@@ -30,7 +30,7 @@ body{
 }
 
 .navbar{
-    background-color:#262626;
+    background-color:#000000;
     padding: 0px;
     margin: 0px;
     height : 100px;
@@ -47,6 +47,17 @@ body{
     align-items: center;
     display: flex;
     justify-content: center;
+}
+
+.damm1{
+    background-color:#000000;
+    padding: 0px;
+    margin: 0px;
+    height : 100px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: white;
 }
 
 .customers{
