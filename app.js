@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");  // for using info coming back from w
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine","ejs") // to tell browser that ejs is bieng used
 const mongoose=require("mongoose");
-mongoose.connect("mongodb://localhost:27017/boticdb",{useNewUrlParser:true});
+mongoose.connect("mongodb://127.0.0.1:27017/boticdb",{useNewUrlParser:true});
 
 var customer;
 var product;
