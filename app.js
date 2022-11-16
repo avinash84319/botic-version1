@@ -6,8 +6,25 @@ app.use(express.static("public"));   //for sending css
 const bodyParser = require("body-parser");  // for using info coming back from website
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine","ejs") // to tell browser that ejs is bieng used
+
+var username
+var password
+
+app.get("/",function(req,res){
+  res.render("login");
+});
+
+app.post("/",function(req,res){
+  username=req.body.username;
+  password=req.body.password;
+  if(username=="avinash"&&password=="jssavi22")
+  res.redirect("/home");
+});
+
+
+
 const mongoose=require("mongoose");
-mongoose.connect("mongodb+srv://avinash:jssavi22@botic.vluhzuc.mongodb.net/boticdb?retryWrites=true&w=majority",{useNewUrlParser:true});
+mongoose.connect('mongodb+srv://avinash:jssavi22@botic.vluhzuc.mongodb.net/boticdb?retryWrites=true&w=majority',{useNewUrlParser:true});
 
 var customer;
 var product;
@@ -26,7 +43,7 @@ const scheme=mongoose.Schema({     //schema for customers object in customer col
 var customers=mongoose.model("customers",scheme);  //created the collection customers
 
 
-app.get("/", function(req,res){      //sendingg response on home route
+app.get("/home", function(req,res){      //sendingg response on home route
     customers.find({},function(err,customers){
         if(err){
           console.log(err);
@@ -53,7 +70,8 @@ app.get("/customerpage", function(req,res){      //sendingg response on home rou
 })
 
 
-app.post("/",function(req,res){
+app.post("/home",function(req,res){
+  console.log("coming to home route");
   if(req.body.addcustomer){
     const addcustomer=new customers({          // apending new customer to old list
         name:req.body.addcustomer,
@@ -61,10 +79,10 @@ app.post("/",function(req,res){
         products:[]
     }) 
     addcustomer.save();  
-    res.redirect("/");              //again sending ejs with new customer list
+    res.redirect("/home");              //again sending ejs with new customer list
   }
   else{                                   
-    res.redirect("/");                //else for go back button in customer page
+    res.redirect("/home");                //else for go back button in customer page
   }
 })
 
@@ -94,7 +112,7 @@ app.post("/delete",function(req,res){    //delete customer
         console.log(err);
       }
       else{
-        res.redirect("/");
+        res.redirect("/home");
       }
     });
 })
@@ -186,7 +204,7 @@ app.post("/undocustomerdelete",function(req,res){
 if(undocustomer){
   customers.find({phoneno:undocustomer.phoneno},function(err,f){
     if(f.length){ 
-     res.redirect("/");
+     res.redirect("/home");
    }
    else{
     const addcustomer=new customers({          // apending new customer to old list
@@ -195,13 +213,13 @@ if(undocustomer){
       products:undocustomer.products
   })
   addcustomer.save(); 
-   res.redirect("/")
+   res.redirect("/home")
    }
 
   })
  }
  else{
-  res.redirect("/");
+  res.redirect("/home");
  }
 })
 
@@ -212,7 +230,7 @@ if(undocustomer){
      res.redirect("/customerpage");
    }
    else{
-     res.redirect("/");
+     res.redirect("/home");
    }
   
  })
