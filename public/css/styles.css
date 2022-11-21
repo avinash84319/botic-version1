@@ -232,27 +232,30 @@ a{
 
 /*login page*/
 .loginbody{
+    background-color:#fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color:#fff;
 }
 .logincontainer{
-    display: inline-flex;
+    display:block;
     justify-content: center;
 }
-
+.loginh1{
+    display: block;
+    padding: 50px;
+    margin-bottom:20px;
+    color: #000000;
+    font-size: 5rem;
+    font-weight: bold;
+}
 .logintext{
-    align-items: center;
-    display: flex;
-    justify-content: center; 
+    display: block;
     padding: 10px;
     margin-bottom:20px;
 }
 .logintextp{
-    align-items: center;
-    display: flex;
-    justify-content: center; 
+    display: block;
     padding: 10px;
     margin-bottom:20px;
 }
