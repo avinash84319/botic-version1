@@ -259,3 +259,12 @@ a{
     padding: 10px;
     margin-bottom:20px;
 }
+.loginb{
+    margin: 10px;
+    font-family: 'montserrat',Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+    background-color:#D9D5D2;
+    border-radius: 10px;
+    border-color:#D9D5D2;
+    border-style:none;
+    font-size: large;
+}
