@@ -173,61 +173,6 @@ td{
     font-size: larger;
 }
 
-
-/*service section*/
-.service{
-    background-color:#222;
-}
-.heading{
-    text-align: center;
-    padding-bottom: 2rem;
-    color:#fff;
-    text-transform: uppercase;
-    font-size: 4rem;
-}
-
-.heading span{
-    color:#fff;
-    text-transform: uppercase;
-}
-.service .box-container{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
-    gap:0.5rem;
-    margin: 40px;
-}
-
-.service .box-container .box{
-    border-radius: .5rem;
-    background:#333;
-    text-align: center;
-    padding:2.5rem;
-}
-
-.service .box-container .box i{
-    height: 2rem;
-    width: 2rem;
-    line-height: 2rem;
-    border-radius: 50%;
-    font-size: 0.75rem;
-    background:var(--main-color);
-    color:#fff;
-}
-
-.service .box-container .box h3{
-    font-size: 2rem;
-    color:#fff;
-    padding:1rem 0;
-}
-
-.service .box-container .box p{
-    font-size: 1rem;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color:#eee;
-    line-height: 1.8;
-}
-
-
 /*footer section */
 a{
     font-family: 'montserrat','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -283,4 +228,31 @@ a{
 
 .footer .credit span{
     color:var(--main-color);
+}
+
+/*login page*/
+.loginbody{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:#fff;
+}
+.logincontainer{
+    display: inline-flex;
+    justify-content: center;
+}
+
+.logintext{
+    align-items: center;
+    display: flex;
+    justify-content: center; 
+    padding: 10px;
+    margin-bottom:20px;
+}
+.logintextp{
+    align-items: center;
+    display: flex;
+    justify-content: center; 
+    padding: 10px;
+    margin-bottom:20px;
 }
