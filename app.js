@@ -129,13 +129,15 @@ customers.find({phoneno:customer},function(err,hash){
       else
       {
         console.log(hash[0].products.length);
-        nid=hash[0].products.length+1;
+        nid=hash[0].products.length+1;             //getting no of products to add id
+        var ndate=new Date();
+        console.log(ndate);
         var addproduct={                          //object product adding to products array
           id:nid,
           name:req.body.addproduct,
           work:req.body.addstage,
           price:parseInt(req.body.addprice),
-          date:req.body.adddate
+          date:ndate.getDate() +"/"+ndate.getMonth()+"/"+ndate.getFullYear()
         };
         customers.updateOne({phoneno:customer},{$push:  //pushing new object into prouct array
         {products:addproduct}},function(err){                           //error function always to coded to mongodb to work
@@ -153,7 +155,8 @@ customers.find({phoneno:customer},function(err,hash){
 
 app.post("/deleteproduct",function(req,res){   //deleting product with checkbox
   deleteprodcust=customer;                                   //savind product deleted customer no for undo delete
-  product=req.body.deleteproduct;
+  product=parseInt(req.body.deleteproduct);
+  console.log(product);
     customers.find({phoneno:customer},function(err,dash){
       if(err){
         console.log(err);
