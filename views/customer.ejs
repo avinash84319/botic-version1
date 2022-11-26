@@ -10,8 +10,8 @@
     </div>
 
     <div>
-        <h1 style="color:black;"><%=customer.name%></h1>
-        <h1 class="h1v4">Total due amount:- <%=price%> </h1>
+        <h1 style="color:white;"><%=customer.name%></h1>
+        <h1 class="h1v4" style="color:white;">Total due amount:- <%=price%> </h1>
     </div>
 
     <div class="dammv2">
@@ -23,7 +23,6 @@
         </form>
         <h1 class="h1v5">Add product</h1>
         <form action="/addproduct" method="post">
-            <input class="input" type="text" placeholder="  id" name="addproductid">
             <input class="input" type="text" placeholder="  product" name="addproduct">
             <input class="input" type="text" placeholder="  stage" name="addstage">
             <input class="input" type="text" placeholder="  total price" name="addprice">

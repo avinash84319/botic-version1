@@ -119,23 +119,35 @@ app.post("/delete",function(req,res){    //delete customer
 
 app.post("/addproduct",function(req,res){  //adding product
   customer=req.body.phoneno;
-  console.log(req.body.phoneno);   //recognising which customer to add product
-   var addproduct={                          //object product adding to products array
-    id:req.body.addproductid,
-    name:req.body.addproduct,
-    work:req.body.addstage,
-    price:parseInt(req.body.addprice),
-    date:req.body.adddate
-  };
-  customers.updateOne({phoneno:customer},{$push:  //pushing new object into prouct array
-  {products:addproduct}},function(err){                           //error function always to coded to mongodb to work
-    if(err){
-      console.log(err);
-    }
-    else{
-      res.redirect("/customerpage");
-    }
-  });
+  console.log(customer,"start");           //recognising which customer to add product
+  var nid;
+customers.find({phoneno:customer},function(err,hash){ 
+      if(err)
+      {
+        console.log(err);
+      }
+      else
+      {
+        console.log(hash[0].products.length);
+        nid=hash[0].products.length+1;
+        var addproduct={                          //object product adding to products array
+          id:nid,
+          name:req.body.addproduct,
+          work:req.body.addstage,
+          price:parseInt(req.body.addprice),
+          date:req.body.adddate
+        };
+        customers.updateOne({phoneno:customer},{$push:  //pushing new object into prouct array
+        {products:addproduct}},function(err){                           //error function always to coded to mongodb to work
+          if(err){
+            console.log(err);
+          }
+          else{
+            res.redirect("/customerpage");
+          }
+        });
+      }
+    });
 
 })
 
